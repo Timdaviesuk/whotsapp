@@ -30,11 +30,11 @@
       <!-- The game -->
       <div v-if="stage==2">
         <p>{{activeGame.activePlayer.name}}'s turn</p>
-        <h2>Deck</h2>
-        <h3>{{topCard.number}} {{topCard.shape.name}}</h3>
+     
+        <h2>{{topCard.number}} {{topCard.shape.name}}</h2>
         <h4 v-if="topCard.isWhotCard">{{topCard.whotShape.name}}</h4>
         
-        <h2>My cards</h2>
+        <h3>My cards</h3>
         <button v-on:click="pickupCard">Pickup</button>
         <ul>
           <li v-for="card in currentPlayer.cards" :key="card.id">
