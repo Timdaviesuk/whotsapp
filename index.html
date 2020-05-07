@@ -39,7 +39,7 @@
         <ul>
           <li v-for="card in currentPlayer.cards" :key="card.id">
             <button v-on:click="placeCard(card)">Place</button>
-            {{card.number}} {{card.shape.name}}
+            {{card.number}} / {{card.shape.name}}
             <select v-if="card.isWhotCard" v-model="card.whotShape">
   <option v-for="option in whotShapes" v-bind:value="option">
     {{ option.name }}
