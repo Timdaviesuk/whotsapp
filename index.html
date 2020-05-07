@@ -31,7 +31,7 @@
       <div v-if="stage==2">
         <p>{{activeGame.activePlayer.name}}'s turn</p>
      
-        <h2>{{topCard.number}} {{topCard.shape.name}}</h2>
+        <h2>{{topCard.number}} / {{topCard.shape.name}}</h2>
         <h4 v-if="topCard.isWhotCard">{{topCard.whotShape.name}}</h4>
         
         <h3>My cards</h3>
@@ -39,7 +39,7 @@
         <ul>
           <li v-for="card in currentPlayer.cards" :key="card.id">
             <button v-on:click="placeCard(card)">Place</button>
-            {{card.number}} / {{card.shape.name}}
+            {{card.number}} {{card.shape.name}}
             <select v-if="card.isWhotCard" v-model="card.whotShape">
   <option v-for="option in whotShapes" v-bind:value="option">
     {{ option.name }}
