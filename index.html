@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>WhotsApp</title>
+    
+     <script src="vue.js"></script>
+   
+    <script src="/Game.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Enter username and create game-->
+      <div v-if="stage==0">
+        <input v-model="app.currentPlayer">
+        <button v-on:click="newGame">Set username</button>
+      </div>
+      
+      <!-- Enter play -->
+      <div v-if="stage==1">
+        <ol>
+          <li v-for="player in activeGame.players" :key="player.id">
+            <input v-model="player.name">
+          </li>
+        </ol>
+        <button v-on:click="addPlayer">Add</button>
+        <button v-on:click="startGame">Start</button>
+      </div>
+      
+      <!-- The game -->
+      <div v-if="stage==2">
+        <p>{{activeGame.activePlayer.name}}'s turn</p>
+        <h2>Deck</h2>
+        <h3>{{topCard.number}} {{topCard.shape.name}}</h3>
+        <h4 v-if="topCard.isWhotCard">{{topCard.whotShape.name}}</h4>
+        
+        <h2>My cards</h2>
+        <button v-on:click="pickupCard">Pickup</button>
+        <ul>
+          <li v-for="card in currentPlayer.cards" :key="card.id">
+            <button v-on:click="placeCard(card)">Place</button>
+            {{card.number}} {{card.shape.name}}
+            <select v-if="card.isWhotCard" v-model="card.whotShape">
+  <option v-for="option in whotShapes" v-bind:value="option">
+    {{ option.name }}
+  </option>
+</select>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Pause -->
+      <div v-if="stage==3">
+        <button v-on:click="stage = 2">Continue</button>
+        
+      </div>
+      
+      <!-- End game -->
+      <div v-if="stage==4">
+        <h1>Congratulations! {{currentPlayer.name}}, you are the winner!</h1>
+        
+      </div>
+    </div>
+    
+    <script
+src="app.js"></script>
+    
+  </body>
+</html>
